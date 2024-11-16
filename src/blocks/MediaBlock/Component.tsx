@@ -16,6 +16,9 @@ type Props = MediaBlockProps & {
   imgClassName?: string
   staticImage?: StaticImageData
   disableInnerContainer?: boolean
+  iframeLink?: String
+  iframeLinkHeight?: String
+  iframeLinkWidth?: String
 }
 
 export const MediaBlock: React.FC<Props> = (props) => {
@@ -28,6 +31,9 @@ export const MediaBlock: React.FC<Props> = (props) => {
     position = 'default',
     staticImage,
     disableInnerContainer,
+    iframeLink,
+    iframeLinkHeight,
+    iframeLinkWidth,
   } = props
 
   let caption
@@ -36,7 +42,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
   return (
     <div
       className={cn(
-        '',
+        'flex justify-center',
         {
           container: position === 'default' && enableGutter,
         },
@@ -44,8 +50,15 @@ export const MediaBlock: React.FC<Props> = (props) => {
       )}
     >
       {position === 'fullscreen' && (
-        <div className="relative">
-          <Media resource={media} src={staticImage} />
+        <div className="relative md:px-25 sm:px-2 md:w-5/6 ">
+          {iframeLink && (
+            <iframe
+              src={`${iframeLink}`}
+              width={`${iframeLinkWidth || '100%'}`}
+              height={`${iframeLinkHeight}`}
+            />
+          )}
+          {!iframeLink && <Media resource={media} src={staticImage} />}
         </div>
       )}
       {position === 'default' && (

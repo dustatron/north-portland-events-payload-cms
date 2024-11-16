@@ -23,7 +23,25 @@ export const MediaBlock: Block = {
       name: 'media',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
+    },
+    {
+      name: 'iframeLink',
+      type: 'text',
+      required: false,
+      defaultValue: '',
+    },
+    {
+      name: 'iframeLinkHeight',
+      type: 'text',
+      required: false,
+      defaultValue: '500',
+    },
+    {
+      name: 'iframeLinkWidth',
+      type: 'text',
+      required: false,
+      defaultValue: '100%',
     },
   ],
 }
