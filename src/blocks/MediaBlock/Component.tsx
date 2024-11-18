@@ -16,9 +16,9 @@ type Props = MediaBlockProps & {
   imgClassName?: string
   staticImage?: StaticImageData
   disableInnerContainer?: boolean
-  iframeLink?: String
-  iframeLinkHeight?: String
-  iframeLinkWidth?: String
+  iframeLink?: String | null
+  iframeLinkHeight?: String | null
+  iframeLinkWidth?: String | null
 }
 
 export const MediaBlock: React.FC<Props> = (props) => {
@@ -58,10 +58,10 @@ export const MediaBlock: React.FC<Props> = (props) => {
               height={`${iframeLinkHeight}`}
             />
           )}
-          {!iframeLink && <Media resource={media} src={staticImage} />}
+          {!iframeLink && media && <Media resource={media} src={staticImage} />}
         </div>
       )}
-      {position === 'default' && (
+      {position === 'default' && media && (
         <Media imgClassName={cn('rounded', imgClassName)} resource={media} src={staticImage} />
       )}
       {caption && (
